@@ -1,0 +1,18 @@
+[package]
+name = "tiktoken-cli"
+version = "0.1.0"
+edition = "2024"
+description = "Offline token counting, encoding, and decoding"
+license = "MIT"
+
+[[bin]]
+name = "tiktoken"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1.0.102"
+cli-command-kit = { path = "../cli-command-kit" }
+tiktoken-rs = "=0.12.1"
+
+[dev-dependencies]
+tempfile = "3.27.0"
