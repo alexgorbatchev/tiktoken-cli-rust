@@ -14,7 +14,6 @@ use tiktoken_rs::{
 };
 
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
-const SKILL: &str = "Install the tiktoken skill using the Skills CLI:\n\n  npx skills add alexgorbatchev/tiktoken-cli --skill tiktoken\n\nSkill:\n\n  https://github.com/alexgorbatchev/tiktoken-cli/tree/main/skills/tiktoken\n";
 const ENCODINGS: &[(&str, Tokenizer)] = &[
     ("o200k_harmony", Tokenizer::O200kHarmony),
     ("o200k_base", Tokenizer::O200kBase),
@@ -114,7 +113,10 @@ pub fn command() -> Command {
 
 pub fn help_options() -> HelpOptions {
     HelpOptions {
-        skill: Some(SKILL.into()),
+        skill: Some(
+            cli_command_kit::SkillSource::new("alexgorbatchev/tiktoken-cli", "main")
+                .expect("the fixed skill source names a GitHub repository"),
+        ),
         ..HelpOptions::default()
     }
 }
@@ -216,7 +218,7 @@ fn perform(
     output: &mut impl Write,
     mode: Mode,
 ) -> Result<()> {
-    if cli_command_kit::write_skill(matches, options, output)? {
+    if cli_command_kit::write_skill(&command(), matches, options, output)? {
         return Ok(());
     }
     if matches.get_flag("version") || matches.subcommand_name() == Some("version") {

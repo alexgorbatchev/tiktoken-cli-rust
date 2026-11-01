@@ -2,7 +2,7 @@
 name: tiktoken
 description: Count, encode, and decode text tokens offline using the tiktoken command.
 created_on: 2026-10-14 14:52
-last_modified: 2026-10-14 14:53
+last_modified: 2026-11-01 12:11
 status: current
 ---
 
@@ -31,7 +31,7 @@ Root `--version`, `-V`: bool, default false; prints the raw version and LF. `tik
 
 `tiktoken skill` prints the Skills CLI install command and canonical source URL, byte-identically in both modes. It reads no files or network. This local Rust migration is unpublished; the canonical GitHub repository's published artifacts and skill may still describe Go.
 
-All commands accept `--help`, `-h`; help groups include `tiktoken text`, `tiktoken token`, and `tiktoken model`. Agent help starts with the skill-reading alert. `AGENT` changes help/catalog/error presentation; token data and version bytes are identical. `COLUMNS` or terminal width controls human help clipping. Displayed filesystem paths fold the home directory to `~`.
+All commands accept `--help`, `-h`; help groups include `tiktoken text`, `tiktoken token`, and `tiktoken model`. Agent help starts with the skill-reading alert. `AGENT` changes help/catalog/error presentation; token data and version bytes are identical. Human help wraps to `COLUMNS` or the terminal width and is never truncated. Displayed filesystem paths fold the home directory to `~`.
 
 Exit 0 means success, including help/version. Exit 1 means a parse, input, encoding, decoding, or output error; errors go once to stderr. Runtime errors print no usage screen. Operations are offline and read-only; token ranks are bundled in the tokenizer dependency.
 

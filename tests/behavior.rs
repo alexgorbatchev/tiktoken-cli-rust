@@ -279,7 +279,7 @@ fn catalogs_help_versions_and_skill_are_operational() {
             b"0.1.0\n"
         );
         let skill = invoke(&["tiktoken", "skill"], b"", false, mode);
-        assert_eq!(skill.1, help_options().skill.unwrap().as_bytes());
+        assert_eq!(skill.1, INSTALL_TEXT.as_bytes());
         assert_eq!(
             invoke(&["tiktoken", "skill", "extra"], b"", false, mode).0,
             1
@@ -478,3 +478,5 @@ fn native_path_handling_and_inline_utf8_validation() {
         assert_eq!(cli_command_kit::fold_home(&path, &home), expected);
     }
 }
+
+const INSTALL_TEXT: &str = "Install the tiktoken skill using the Skills CLI:\n\n  npx skills add alexgorbatchev/tiktoken-cli --skill tiktoken\n\nSkill:\n\n  https://github.com/alexgorbatchev/tiktoken-cli/tree/main/skills/tiktoken\n";
